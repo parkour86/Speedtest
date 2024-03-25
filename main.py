@@ -34,8 +34,11 @@ class Speedtest(ActionBase):
         super().__init__(action_id=action_id, action_name=action_name,
             deck_controller=deck_controller, page=page, coords=coords, plugin_base=plugin_base)
 
+        self.speedtest: speedtest.Speedtest = None
         self.state = "idle"
 
+
+    def init_speedtest(self) -> None:
         try:
             self.speedtest = speedtest.Speedtest(secure=True)
         except (speedtest.ConfigRetrievalError, speedtest.SpeedtestBestServerFailure) as e:
@@ -62,6 +65,7 @@ class Speedtest(ActionBase):
 
 
     def perform_test(self):
+        self.init_speedtest()
         self.speedtest.get_best_server()
         download = round(self.speedtest.download()/1000000)
         upload = round(self.speedtest.upload()/1000000)
@@ -76,7 +80,8 @@ class Speedtest(ActionBase):
         self.set_bottom_label(f"{upload} Mbps", font_size=12)
 
         self.state = "showing"
-   
+        self.speedtest = None
+        self.init_speedtest()
 
 
 class SpeedTestPlugin(PluginBase):
