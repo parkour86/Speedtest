@@ -53,7 +53,6 @@ class Speedtest(ActionBase):
 
     def on_key_down(self):
         if self.state in ["idle", "showing"]:
-            print("running")
             self.state = "running"
             self.set_media(image=None, update=True)
             self.set_top_label(None)
