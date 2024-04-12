@@ -3,5 +3,6 @@
     "thumbnail": "store/Thumbnail.png",
     "id": "com_core447_Speedtest",
     "name": "Speedtest",
-    "description": "Check your internet speed using speedtest.net."
+    "description": "Check your internet speed using speedtest.net.",
+    "short-description": "Check your internet"
 }
