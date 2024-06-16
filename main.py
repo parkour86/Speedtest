@@ -3,6 +3,8 @@ import time
 from src.backend.PluginManager.ActionBase import ActionBase
 from src.backend.PluginManager.PluginBase import PluginBase
 from src.backend.PluginManager.ActionHolder import ActionHolder
+from src.backend.DeckManagement.InputIdentifier import Input
+from src.backend.PluginManager.ActionInputSupport import ActionInputSupport
 
 # Import gtk modules
 import gi
@@ -93,9 +95,14 @@ class SpeedTestPlugin(PluginBase):
         self.speedtest_holder = ActionHolder(
             plugin_base=self,
             action_base=Speedtest,
-            action_id="com_core447_Speedtest::Speedtest",
+            action_id_suffix="Speedtest",
             action_name=self.lm.get("actions.speedtest.name"),
-            icon=Gtk.Picture.new_for_filename(os.path.join(self.PATH, "assets", "speed.png"))
+            icon=Gtk.Picture.new_for_filename(os.path.join(self.PATH, "assets", "speed.png")),
+            action_support={
+                Input.Key: ActionInputSupport.SUPPORTED,
+                Input.Dial: ActionInputSupport.SUPPORTED,
+                Input.Touchscreen: ActionInputSupport.UNSUPPORTED
+            }
         )
         self.add_action_holder(self.speedtest_holder)
 
