@@ -58,7 +58,11 @@ class Speedtest(ActionBase):
             self.set_top_label(None)
             self.set_center_label("Testing...", font_size=12)
             self.set_bottom_label(None)
-            self.perform_test()
+            try:
+                self.perform_test()
+            except Exception as e:
+                log.error(e)
+                self.show_error(1)
         elif self.image_state in ["running", "error"]:
             return
 
