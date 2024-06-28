@@ -35,7 +35,7 @@ class Speedtest(ActionBase):
         super().__init__(*args, **kwargs)
 
         self.speedtest: speedtest.Speedtest = None
-        self.state = "idle"
+        self.image_state = "idle"
 
 
     def init_speedtest(self) -> None:
@@ -45,21 +45,21 @@ class Speedtest(ActionBase):
             log.error(e)
             self.show_error()
             self.set_bottom_label(None)
-            self.state = "error"
+            self.image_state = "error"
         
     def on_ready(self):
-        self.set_media(media_path=os.path.join(self.plugin_base.PATH, "assets", "speed.png"), size=0.8, valign=-1, update=False)
+        self.set_media(media_path=os .path.join(self.plugin_base.PATH, "assets", "speed.png"), size=0.8, valign=-1, update=True)
         self.set_bottom_label("Start")
 
     def on_key_down(self):
-        if self.state in ["idle", "showing"]:
-            self.state = "running"
+        if self.image_state in ["idle", "showing"]:
+            self.image_state = "running"
             self.set_media(image=None, update=True)
             self.set_top_label(None)
             self.set_center_label("Testing...", font_size=12)
             self.set_bottom_label(None)
             self.perform_test()
-        elif self.state in ["running", "error"]:
+        elif self.image_state in ["running", "error"]:
             return
 
 
@@ -78,7 +78,7 @@ class Speedtest(ActionBase):
         self.set_center_label(f"{download} Mbps", font_size=12, update=False)
         self.set_bottom_label(f"{upload} Mbps", font_size=12)
 
-        self.state = "showing"
+        self.image_state = "showing"
         self.speedtest = None
         self.init_speedtest()
 
