@@ -46,7 +46,7 @@ class Speedtest(ActionBase):
             self.show_error()
             self.set_bottom_label(None)
             self.image_state = "error"
-        
+
     def on_ready(self):
         self.set_media(media_path=os .path.join(self.plugin_base.PATH, "assets", "speed.png"), size=0.8, valign=-1, update=True)
         self.set_bottom_label("Start")
@@ -78,7 +78,7 @@ class Speedtest(ActionBase):
             # Page has changed while test was running
             return
 
-        self.set_top_label(f"Ping: {ping} ms", font_size=11, update=False)
+        self.set_top_label(f"{ping} ms", font_size=11, update=False)
         self.set_center_label(f"{download} Mbps", font_size=12, update=False)
         self.set_bottom_label(f"{upload} Mbps", font_size=12)
 
