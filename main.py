@@ -116,8 +116,8 @@ class SpeedTestPlugin(PluginBase):
             action_base=Speedtest,
             action_id_suffix="Speedtest",
             action_name=self.lm.get("actions.speedtest.name"),
-            # icon=Gtk.Picture.new_for_filename(os.path.join(self.PATH, "assets", "speed.png")),
-            icon=Gtk.Image.new_from_file(os.path.join(self.PATH, "assets", "speed.png")),
+            icon=Gtk.Picture.new_for_filename(os.path.join(self.PATH, "assets", "speed.png")),
+            #icon=Gtk.Image.new_from_file(os.path.join(self.PATH, "assets", "speed.png")),
             action_support={
                 Input.Key: ActionInputSupport.SUPPORTED,
                 Input.Dial: ActionInputSupport.SUPPORTED,
