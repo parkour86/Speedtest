@@ -72,7 +72,7 @@ class Speedtest(ActionBase):
         """
         self.set_top_label(None)
         self.set_center_label(None)
-        self.set_bottom_label(None)
+        self.set_bottom_label("Start")
         self.set_media(media_path=os.path.join(self.plugin_base.PATH, "assets", "speed.png"), size=0.8, valign=-1, update=True)
 
 
