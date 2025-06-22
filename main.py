@@ -68,12 +68,13 @@ class Speedtest(ActionBase):
 
     def on_key_hold(self):
         """
-        Clears the top, center, and bottom labels when the button is held down.
+        Clears the top, center, and bottom labels and restores the speed.png image.
         """
         self.set_top_label(None)
         self.set_center_label(None)
         self.set_bottom_label(None)
-        self.set_media(media_path=os.path.join(self.plugin_base.PATH,
+        self.set_media(media_path=os.path.join(self.plugin_base.PATH, "assets", "speed.png"), size=0.8, valign=-1, update=True)
+
 
     def event_callback(self, event, data=None):
         # Handles key events for the Speedtest action
