@@ -66,6 +66,21 @@ class Speedtest(ActionBase):
         elif self.image_state in ["running", "error"]:
             return
 
+    def on_key_hold(self):
+        """
+        Clears the top, center, and bottom labels when the button is held down.
+        """
+        self.set_top_label(None)
+        self.set_center_label(None)
+        self.set_bottom_label(None)
+
+    def event_callback(self, event, data=None):
+        # Handles key events for the Speedtest action
+        if hasattr(Input, "Key") and hasattr(Input.Key, "Events"):
+            if event == Input.Key.Events.SHORT_UP:
+                self.on_key_down()
+            elif event == Input.Key.Events.HOLD_START:
+                self.on_key_hold()
 
     def perform_test(self):
         self.init_speedtest()
@@ -78,7 +93,7 @@ class Speedtest(ActionBase):
             # Page has changed while test was running
             return
 
-        self.set_top_label(f"{ping} ms", font_size=11, update=False)
+        self.set_top_label(f"Ping: {ping} ms", font_size=11, update=False)
         self.set_center_label(f"{download} Mbps", font_size=12, update=False)
         self.set_bottom_label(f"{upload} Mbps", font_size=12)
 
