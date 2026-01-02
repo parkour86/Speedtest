@@ -77,12 +77,10 @@ class Speedtest(ActionBase):
 
 
     def event_callback(self, event, data=None):
-        # Handles key events for the Speedtest action
-        if hasattr(Input, "Key") and hasattr(Input.Key, "Events"):
-            if event == Input.Key.Events.SHORT_UP:
-                self.on_key_down()
-            elif event == Input.Key.Events.HOLD_START:
-                self.on_key_hold()
+        if event == Input.Key.Events.SHORT_UP:
+            self.on_key_down()
+        elif event == Input.Key.Events.HOLD_START:
+            self.on_key_hold()
 
     def perform_test(self):
         self.init_speedtest()
